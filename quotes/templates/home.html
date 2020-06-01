@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Stock Portfolio
+{% endblock %}
+
+{% block content %}
+
+    {% if ticker %}
+        {{ ticker }}
+    {% endif %}
+
+    {% if api %}
+        {% if api == "Error..." %}
+            <h1>Please enter correct ticker symbol...</h1>
+
+        {% else %}
+            <h1>{{ api.companyName }}</h1><br/>
+            {{ api.symbol }}<br/>
+            Price: ${{ api.latestPrice }}<br/>
+            Previous Close: ${{ api.previousClose }}<br/>
+            Market Cap: ${{ api.marketCap }}<br/>
+            YTD Change: {{ api.ytdChange }}<br/>
+            Week 52 High: ${{ api.week52High }}<br/>
+            Week 52 Low: ${{ api.week52Low }}<br/>
+
+        {% endif %}
+
+    {% else %}
+
+    {% endif %}
+
+{% endblock %}
