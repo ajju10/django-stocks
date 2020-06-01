@@ -12,7 +12,7 @@ def home(request):
     if request.method == 'POST':
         ticker = request.POST['ticker']
         api_request = requests.get(
-            "https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=pk_836c0f55f55940788d27b5e7d1620885")
+            "https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=YOUR_API_TOKEN")
 
         try:
             api = json.loads(api_request.content)
@@ -20,8 +20,7 @@ def home(request):
             api = "Error..."
         return render(request, 'home.html', {'api': api})
     else:
-        api_request = requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token"
-                                   "=pk_836c0f55f55940788d27b5e7d1620885")
+        api_request = requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=YOUR_API_TOKEN")
         try:
             api = json.loads(api_request.content)
         except Exception as e:
