@@ -46,8 +46,7 @@ def add_stocks(request):
         output = []
         for ticker_item in ticker:
             api_request = requests.get(
-                "https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token"
-                                                                               "=pk_836c0f55f55940788d27b5e7d1620885")
+                "https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=YOUR_API_TOKEN")
 
             try:
                 api = json.loads(api_request.content)
