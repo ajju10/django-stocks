@@ -8,7 +8,6 @@ from .forms import StockForm
 from .models import Stock
 
 
-# pk_836c0f55f55940788d27b5e7d1620885
 def home(request):
     if request.method == 'POST':
         ticker = request.POST['ticker']
@@ -21,7 +20,13 @@ def home(request):
             api = "Error..."
         return render(request, 'home.html', {'api': api})
     else:
-        return render(request, 'home.html', {'ticker': 'Enter a ticker symbol'})
+        api_request = requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token"
+                                   "=pk_836c0f55f55940788d27b5e7d1620885")
+        try:
+            api = json.loads(api_request.content)
+        except Exception as e:
+            api = "Error..."
+        return render(request, 'home.html', {'api': api})
 
 
 def about(request):
